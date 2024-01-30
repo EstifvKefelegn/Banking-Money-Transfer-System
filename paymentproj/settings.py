@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # custom apps
     'core',
     'userauth',
-
+    'account'
     ]
 
 INTERNAL_IPS = [
