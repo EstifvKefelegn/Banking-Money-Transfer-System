@@ -8,7 +8,8 @@ from userauth.models import User
 # Create your models here.
 ACCOUNT_STATUS = (
     ('active', 'Active'),
-    ("in-active", "In-active")
+    ('pending', 'Pending'),
+    ("in-active", "In-Active")
 )
 
 MARITIAL_STATUS = (
@@ -41,7 +42,7 @@ class Account(models.Model):
     account_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="EST", alphabet="1234567890")
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890")
     ref_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890")
-    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
+    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="pending")
     date = models.DateTimeField(auto_now_add=True)
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
@@ -58,11 +59,13 @@ class Account(models.Model):
 class KYC(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    account = models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
     fullname = models.CharField(max_length=100)
     image = models.ImageField(upload_to="kyc", default="default.jpg")
     maritial_status = models.CharField(max_length=40, choices = MARITIAL_STATUS) 
     gender = models.CharField(choices=GENDER, max_length=40)
     identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
+    identity_image = models.ImageField(upload_to="kyc", default="default.jpg")
     date_of_birth = models.DateField(auto_now_add=False)
     signature = models.ImageField(upload_to="kyc")
 

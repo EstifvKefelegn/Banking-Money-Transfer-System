@@ -15,10 +15,6 @@ def RegisterView(request):
                                    password=form.cleaned_data["password1"])
            login(request, new_user)
            return redirect("core:index")
-
-    # if request.user.is_authenticated:
-    #     messages.warning(request, "You are already loggedin")
-    #     return redirect("core:index")
     else:
         form = RegisterForm()
 
@@ -47,6 +43,10 @@ def SignInView(request):
         except:
             messages.warning(request, "User does not exist")
 
+
+    if request.user.is_authenticated:
+        messages.warning(request, "You are already loggedin")
+        return redirect("account:account")
 
     return render(request, "userauth/signin.html")
 
