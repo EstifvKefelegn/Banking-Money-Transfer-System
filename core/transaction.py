@@ -7,13 +7,19 @@ from django.contrib import messages
 
 
 def transaction_list(request):
-    sender_transaction = Transaction.objects.filter(sender=request.user).order_by('-id')
-    reciver_transaction = Transaction.objects.filter(reciver=request.user).order_by('-id')
+    sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="transfer").order_by('-id')
+    reciver_transaction = Transaction.objects.filter(reciver=request.user, transaction_type="transfer").order_by('-id')
 
-    
+
+    sender_request_transaction = Transaction.objects.filter(sender=request.user, transaction_type="request").order_by('-id')
+    reciver_request_transaction = Transaction.objects.filter(reciver=request.user, transaction_type="request").order_by('-id')
+
+
     context = {
         "sender_transaction":sender_transaction,
-        "reciver_transaction":reciver_transaction
+        "reciver_transaction":reciver_transaction,
+        'sender_request_transaction': sender_request_transaction,
+        "reciver_request_transaction":reciver_request_transaction
     }
 
 

@@ -1,0 +1,61 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+<section class="dashboard-section body-collapse pay step">
+    <div class="overlay pt-120">
+        <div class="container-fruid">
+            <div class="main-content">
+                <div class="head-area d-flex align-items-center justify-content-between">
+                    <h4>Request a Payment</h4>
+                    <div class="icon-area">
+                        <img src="{% static "assets/images/icon/support-icon.png" %}" alt="icon">
+                    </div>
+                </div>
+                
+                <form class="flex-fill" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group d-flex align-items-center">
+                        <img src="{% static "assets/images/icon/search.png" %}" alt="icon">
+                        <input type="text" name="account_number" placeholder="Enter Account Number">
+                        <button type="submit">request</button>
+                    </div>
+                </form>
+                <div class="user-select">
+                    {% if query %} 
+                    {% comment %} {% for acc in account %}                         {% endcomment %}
+                    <div class="single-user">
+                        <div class="left d-flex align-items-center">
+                            <div class="img-area">
+                                <img src="{{ account.user.kyc.image.url}}" style="height:70px; width:70px; border-radius:50%; object-fit: cover;" alt="image">
+                            </div>
+                            <div class="text-area">
+                                <p>{{account.user.username}}</p>
+                                <p>{{account.account_number}}</p>
+                                <span class="mdr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="773f12051a1619444237101a161e1b5914181a">{{account.user.email}}</a></span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <a href="{% url "core:paymentrequest" account.account_number %}">Choose</a>
+                        </div>
+                    </div>
+                    {% comment %} {% empty %}
+                    <h4 class="mt-4">No user with witht this account</h4> 
+     {% endcomment %}
+                    {% endif %}
+                </div>
+                <div class="footer-area mt-40">
+                    <a href="pay.html">Previous Step</a>
+                    <a href="pay-step-2.html" class="active">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+
+

@@ -110,7 +110,7 @@ def transfer_process(request, accountnumber, transaction_id):
 
     if request.method == "POST":
         pin_number = request.POST.get('pin_number')
-        print(pin_number)
+        # print(pin_number)
         
         if pin_number == sender_account.pin_number:
             transaction.status = "complete"

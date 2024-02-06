@@ -1,0 +1,84 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+
+    <!-- Dashboard Section start -->
+    <section class="dashboard-section body-collapse pay step step-2">
+        <div class="overlay pt-120">
+            <div class="container-fruid">
+                <div class="main-content">
+                    <div class="head-area d-flex align-items-center justify-content-between">
+                        <h4>Request a Payment</h4>
+                        <div class="icon-area">
+                            <img src="{% static "assets/images/icon/support-icon.png" %}" alt="icon">
+                        </div>
+                    </div>
+                    <div class="choose-recipient">
+                        <div class="step-area">
+                            <span class="mdr">Step 2 of 3</span>
+                            <h5>Set Amount of Request</h5>
+                        </div>
+                        <div class="user-select">
+                            <div class="single-user">
+                                <div class="left d-flex align-items-center">
+                                    <div class="img-area">
+                                        <img src="{{account.user.kyc.image.url}}" style="height:75px; width:75px; border-radius:50%; object-fit:cover;" alt="image">
+                                    </div>
+                                    <div class="text-area">
+                                        <p>{{account.user.kyc.fullname}}</p>
+                                        <p>{{account.account_number}}</p>
+                                        <span class="mdr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82cae7f0efe3ecb1b7c2e5efe3ebeeace1edef">{{account.user.email}}</a></span>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    {% comment %} <a href="javascript:void(0)">
+                                        <i class="icon-g-tick"></i>
+                                        Choose
+                                    </a> {% endcomment %}
+                                    <a href="{% url "core:search-user"%}">
+                                        <i class="icon-h-edit"></i>
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="{% url "core:amountrequestprocess" account.account_number %}" method="POST" >
+                        {% csrf_token %}
+                        <div class="send-banance">
+                            <span class="mdr">You Request</span>
+                            <div class="input-area">
+                                <input name="amount-send" class="xxlr"  placeholder="Enter Request Amount" type="number" id="amount-send">
+                                <select>
+                                    <option value="1">USD</option>
+                                    <option value="2">USD</option>
+                                    <option value="3">USD</option>
+                                </select>
+                            </div>
+                            {% comment %} <p>Request Balance<b>{{request.user.account.account_balance}}</b></p> {% endcomment %}
+                            <p id="new_balance"></p>
+                            <p class="text-danger" id="error-div"></p>
+                        </div>
+                        <div class="send-banance pt-0 mt-0">
+                            <span class="mdr">Request Description</span>
+                            <div class="input-area">
+                                <input name="description" class="xxlr"  placeholder="Enter a Request dscription" type="text" id="amount-send">
+                                
+                            </div>
+                            
+                        </div>
+                      
+                       
+                        <div class="footer-area mt-40">
+                            <a href="{% url "core:searchuserrequest" %}">Previous Step</a>
+                            <button type="submit" style="padding: 10px 30px; border-radius:20px;" class="active">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock content %}
