@@ -4,7 +4,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Account, KYC
 from .forms import KYCForms
 from core.forms import CreditCardForms
-from core.models import CreditCard
+from core.models import CreditCard, Transaction
+from django.db.models import Q
+
+
 # Create your views here.
 
 @login_required
@@ -82,7 +85,8 @@ def dashboard(request):
                 return redirect("account:dashboard")
 
         else:
-            form = CreditCardForms() 
+            form = CreditCardForms()
+        transaction_context = latest_transactions(request)
     else:
         messages.warning(request, 'You have to login first')
         return redirect("userauth:signin")    
@@ -93,5 +97,48 @@ def dashboard(request):
         "form":form,
         'credit_card':credit_card
     }
+    
+    context.update(transaction_context)
 
     return render(request, "account/dashboard.html", context)
+
+
+
+def latest_transactions(request):
+    sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="transfer").order_by('-id').prefetch_related("user", "sender")
+    reciver_transaction = Transaction.objects.filter(reciver=request.user, transaction_type="transfer").order_by('-id').prefetch_related("user", "reciver")
+
+
+    # sender_request_transaction = Transaction.objects.filter(sender=request.user, transaction_type="request").order_by('-id').prefetch_related("user", "sender")
+    # reciver_request_transaction = Transaction.objects.filter(reciver=request.user, transaction_type="request").order_by('-id').prefetch_related("user", "reciver")
+
+
+    context = {
+        "sender_transaction":sender_transaction,
+        "reciver_transaction":reciver_transaction,
+        
+    }
+    return context
+
+def deposit(request):
+    kyc = KYC.objects.get(user=request.user)
+    account = Account.objects.get(user=request.user)
+    credit_card = CreditCard.objects.filter(user= request.user).order_by('-id')
+
+    
+    context = {
+        "kyc":kyc,
+        "account":account,
+        'credit_card':credit_card
+    }
+    return render(request, "account/deposit_money.html",context)
+
+
+def withdraw(request):
+    credit_card = CreditCard.objects.filter(user= request.user).order_by('-id')
+
+    
+    context = {
+        'credit_card':credit_card
+    }
+    return render(request, "transaction/withdraw.html", context)

@@ -30,7 +30,6 @@ TRANSACTION_STATUS = (
 CARD_TYPE = (
     ('master', 'master'),
     ('visa', 'visa'),
-    ('verve', 'verve'),
 )
 
 class Transaction(models.Model):

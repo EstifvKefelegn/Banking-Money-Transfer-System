@@ -113,7 +113,7 @@
                                                                                         <button type="button" class="reg btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#withdraw_fund">
                                                                                             Withdraw
                                                                                         </button>  
-                                                                                        <a href="#" class="reg btn btn-danger w-100 mb-2">
+                                                                                        <a href="{% url "core:deletecreditcard" credit_card.card_id %}" class="reg btn btn-danger w-100 mb-2">
                                                                                             Delete Card
                                                                                         </a> 
                                                                                 </div>    
@@ -153,13 +153,13 @@
                                 <h6>Fund Credit Card</h6>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                             </div>
-                            <form action="#" method="POST">
+                            <form action="{% url "core:fundcreditcard" credit_card.card_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
                                         <div class="single-input">
                                             <label for="cardNumber">Card Number</label>
-                                            <input type="text" id="cardNumber" value="{{ credit_card.number }}">
+                                            <input type="text" id="cardNumber" name="funding_amount" value="{{ credit_card.number }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -210,7 +210,7 @@
                                 <h6>Withdraw from Card</h6>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                             </div>
-                            <form action="#" method="POST">
+                            <form action="{% url "core:withdrawfund" credit_card.card_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row justify-content-center">
                                     
@@ -223,7 +223,7 @@
                                     <div class="col-md-12">
                                         <div class="single-input">
                                             <label for="year">Enter Amount</label>
-                                            <input type="number" name="amount" id="amount" placeholder="$20">
+                                            <input type="number" name="withdarwal_amount"id="amount" placeholder="$20">
                                         </div>
                                     </div>
                                     <div class="col-12">

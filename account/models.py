@@ -61,7 +61,7 @@ class KYC(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     account = models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
     fullname = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="kyc", default="default.jpg")
+    image = models.ImageField(upload_to="kyc", default="static/assets/images/profile.jpeg")
     maritial_status = models.CharField(max_length=40, choices = MARITIAL_STATUS) 
     gender = models.CharField(choices=GENDER, max_length=40)
     identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)

@@ -89,6 +89,37 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        {% comment %} <nav aria-label="Page navigation" class="d-flex justify-content-center mt-40">
+                                            <ul class="pagination justify-content-center align-items-center mb-40">
+                                                {% if sender_transaction.has_previous %}
+                                                <li class="page-item">
+                                                    <a class="page-link previous" href="?page=1" aria-label="Previous">
+                                                        <i class="fa-solid fa-angles-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link previous" href="?page={{sender_transaction.previous_page_number}}" aria-label="Previous">
+                                                        <i class="fa-solid fa-angle-left"></i>
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+
+                                                 Page {{sender_transaction.number}} of {{sender_transaction.paginator.num_pages}}
+                                            
+                                                {% if sender_transaction.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link next" href="?page={{sender_transaction.next_page_number}}" aria-label="Next">
+                                                        <i class="fa-solid fa-angle-right"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link next" href="?page={{sender_transaction.paginator.num_pages}}" aria-label="Next">
+                                                        <i class="fa-solid fa-angles-right"></i>
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </nav> {% endcomment %}
                                     </div>
                                     <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                                         <div class="table-responsive">
@@ -137,7 +168,7 @@
                                                         </td>
                                                         {% comment %} <a href="{% url "core:transaction-detail" r.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Delete</a> {% endcomment %}
                                                         {% endif %}
-                                                        {% if s.status == "request_processing" or r.transaction == "request_sent" %}
+                                                        {% if s.status == "request_processing" or r.status == "request_sent" %}
                                                         <td>
                                                         <a href="{% url "core:transaction-detail" r.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
                                                         <a href="{% url "core:transaction-detail" r.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Delete</a>
@@ -153,6 +184,36 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        {% comment %} <nav aria-label="Page navigation" class="d-flex justify-content-center mt-40">
+                                            <ul class="pagination justify-content-center align-items-center mb-40">
+                                                {% if reciver_transaction.has_previous %}
+                                                <li class="page-item">
+                                                    <a class="page-link previous" href="?page=1" aria-label="Previous">
+                                                        <i class="fa-solid fa-angles-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link previous" href="?page={{reciver_transaction.previous_page_number}}" aria-label="Previous">
+                                                        <i class="fa-solid fa-angle-left"></i>
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+
+                                                Page {{reciver_transaction.number}} of {{reciver_transaction.paginator.num_pages}}
+                                                {% if reciver_transaction.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link next" href="?page={{reciver_transaction.next_page_number}}" aria-label="Next">
+                                                        <i class="fa-solid fa-angle-right"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link next" href="?page={{reciver_transaction.paginator.num_pages}}" aria-label="Next">
+                                                        <i class="fa-solid fa-angles-right"></i>
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </nav> {% endcomment %}
                                     </div>
                                     <div class="tab-pane fade" id="sentrequest" role="tabpanel" aria-labelledby="sentrequest-tab">
                                         <div class="table-responsive">
@@ -255,6 +316,15 @@
                                                             <p class="mdr">{{r.date|date:"d:m:y"}}</p>
                                                         </td>
                                                         <td>
+                                                                {% if r.status == 'request_sent' %} 
+                                                                <p class="text-success">{{r.status|title}}</p>
+                                                                {% endif %}
+                                                                {% if r.status == 'request_settled' %}
+                                                                <p class="text-success">{{r.status|title}}</p>
+                                                                {% endif %}
+                                                                {% if r.status == 'request_processing' %}
+                                                                <p class="inprogress">{{r.status|title}}</p>
+                                                                {% endif %}
                                                                 {% if r.status == 'complete' %} 
                                                                 <p class="text-success">{{r.status|title}}</p>
                                                                 {% endif %}
@@ -267,15 +337,7 @@
                                                                 {% if r.status == 'failed' %}
                                                                 <p class="text-danger">{{r.status|title}}</p>
                                                                 {% endif %}
-                                                                {% if r.status == 'request_sent' %} 
-                                                                <p class="text-success">{{r.status|title}}</p>
-                                                                {% endif %}
-                                                                {% if r.status == 'request_settled' %}
-                                                                <p class="text-success">{{r.status|title}}</p>
-                                                                {% endif %}
-                                                                {% if r.status == 'request_processing' %}
-                                                                <p class="inprogress">{{r.status|title}}</p>
-                                                                {% endif %}
+                                                                
                                                              {% comment %} {% endif %}        {% endcomment %}
                                                             </td>
                                                         <td>
@@ -287,10 +349,10 @@
                                                         </td>
                                                         {% comment %} <a href="{% url "core:transaction-detail" r.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Delete</a> {% endcomment %}
                                                         {% endif %}
-                                                        {% if r.status == "request_processing" or r.transaction == "request_sent" %}
+                                                        {% if r.status == "request_processing" or r.status == "request_sent" %}
                                                         <td>
-                                                        <a href="{% url "core:transaction-detail" r.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
-                                                        <a href="{% url "core:requestdelete" r.reciver.account.account_number r.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Delete</a>
+                                                        <a href="{% url "core:settlementconfirmation" r.sender.account.account_number r.transaction_id %}" class="btn btn-primary"><i class="fas fa-check-circle"></i> Settle</a>
+                                                        <a href="{% url "core:requestdelete" r.reciver.account.account_number r.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
                                                     </td>
                                                         {% endif %}
                                                         {% empty%}
@@ -303,37 +365,11 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        
                                     </div>
                                                         
                             </div>
-                            <nav aria-label="Page navigation" class="d-flex justify-content-center mt-40">
-                                <ul class="pagination justify-content-center align-items-center mb-40">
-                                    <li class="page-item">
-                                        <a class="page-link previous" href="javascript:void(0)" aria-label="Previous">
-                                            <i class="fa-solid fa-angles-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link previous" href="javascript:void(0)" aria-label="Previous">
-                                            <i class="fa-solid fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                    <li class="page-item"><a class="page-link active" href="javascript:void(0)">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0)" aria-label="Next">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0)" aria-label="Next">
-                                            <i class="fa-solid fa-angles-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                           
                         </div>
                     </div>
                 </div>

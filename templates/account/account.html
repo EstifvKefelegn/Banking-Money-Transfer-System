@@ -85,7 +85,7 @@
                                             </div>
 
                                         </div>
-                                        <form action="#">
+                                        <form action="{% url "account:kyc-reg" %}">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-6">
                                                     <div class="single-input">
@@ -172,46 +172,39 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
-                                        <div class="single-content authentication d-flex align-items-center justify-content-between">
-                                            <div class="left">
-                                                <h5>Two Factor Authentication</h5>
-                                                <p>Two-Factor Authentication (2FA) can be used to help protect your account</p>
-                                            </div>
-                                            <div class="right">
-                                                <button>Enable</button>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="change-pass mb-40">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <h5>Change Password</h5>
                                                     <p>You can always change your password for security reasons or reset your password in case you forgot it.</p>
-                                                    <a href="javascript:void(0)">Forgot password?</a>
+                                                    
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <form action="#">
+                                                    <form action="{% url "userauth:resetpassword" %}" method="POST">
+                                                        {% csrf_token %}
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-12">
                                                                 <div class="single-input">
                                                                     <label for="current-password">Current password</label>
-                                                                    <input type="text" id="current-password" placeholder="Current password">
+                                                                    <input type="password" name="current_password" id="current-password" placeholder="Current password">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="single-input">
                                                                     <label for="new-password">New password</label>
-                                                                    <input type="text" id="new-password" placeholder="New password">
+                                                                    <input type="password" id="new-password" name="new_password" placeholder="New password">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="single-input">
                                                                     <label for="confirm-password">Confirm New password</label>
-                                                                    <input type="text" id="confirm-password" placeholder="Confirm New password">
+                                                                    <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm New password">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="btn-border w-100">
-                                                                    <button class="cmn-btn w-100">Update password</button>
+                                                                    <button type="submit" class="cmn-btn w-100">Update password</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -219,84 +212,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="single-content additional-security">
-                                            <h5>Additional security</h5>
-                                            <div class="single-setting">
-                                                <div class="left">
-                                                    <h6>SMS recovery</h6>
-                                                    <p>Number ending with 1234</p>
-                                                </div>
-                                                <div class="right">
-                                                    <button class="active">Disable SMS</button>
-                                                </div>
-                                            </div>
-                                            <div class="single-setting">
-                                                <div class="left">
-                                                    <h6>Autheticator App</h6>
-                                                    <p>Google Authenticator</p>
-                                                </div>
-                                                <div class="right">
-                                                    <button>Configure</button>
-                                                </div>
-                                            </div>
-                                            <div class="single-setting">
-                                                <div class="left">
-                                                    <h6>SSL Certificate</h6>
-                                                    <p>Secure Sockets Layer</p>
-                                                </div>
-                                                <div class="right">
-                                                    <button>Configure</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-content your-devices">
-                                            <div class="head-item d-flex align-items-center justify-content-between">
-                                                <h5>Your devices</h5>
-                                                <a href="javascript:void(0)">Log out on all devices</a>
-                                            </div>
-                                            <div class="single-setting">
-                                                <div class="left">
-                                                    <div class="icon-area">
-                                                        <img src="{% static "assets/images/icon/iphone.png" %}" alt="icon">
-                                                    </div>
-                                                    <div class="text-area">
-                                                        <h6>Iphone 13 Pro Max</h6>
-                                                        <p>New York City · June 20 at 14:00</p>
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <button>Log out</button>
-                                                </div>
-                                            </div>
-                                            <div class="single-setting">
-                                                <div class="left">
-                                                    <div class="icon-area">
-                                                        <img src="{% static "assets/images/icon/ipad.png" %}" alt="icon">
-                                                    </div>
-                                                    <div class="text-area">
-                                                        <h6>iPad Pro</h6>
-                                                        <p>New York City · June 20 at 14:00</p>
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <button>Log out</button>
-                                                </div>
-                                            </div>
-                                            <div class="single-setting">
-                                                <div class="left">
-                                                    <div class="icon-area">
-                                                        <img src="{% static "assets/images/icon/imac.png" %}" alt="icon">
-                                                    </div>
-                                                    <div class="text-area">
-                                                        <h6>iMac OSX</h6>
-                                                        <p>New York City · June 20 at 14:00</p>
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <button>Log out</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
                                     </div>
                                     <div class="tab-pane pb-120 fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
                                         <div class="card-area">

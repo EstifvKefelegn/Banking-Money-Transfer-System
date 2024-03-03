@@ -14,7 +14,7 @@ def RegisterView(request):
            new_user = authenticate(username=form.cleaned_data["email"],
                                    password=form.cleaned_data["password1"])
            login(request, new_user)
-           return redirect("core:index")
+           return redirect("account:kyc-reg")
     else:
         form = RegisterForm()
 
@@ -49,6 +49,33 @@ def SignInView(request):
         return redirect("account:account")
 
     return render(request, "userauth/signin.html")
+
+def password_reset(request):
+    current_user  = request.user
+    # username = User.objects.get(username=current_user)
+    if request.method == "POST":
+        current_password = request.POST.get("current_password")
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get("confirm_password")
+        print(f"Current User: {current_user.username}")
+        print(f"Current Password: {current_password}")
+        print(f"New Password: {new_password}")
+        print(f"Confirm Password: {confirm_password}")
+        if current_user.check_password(current_password):
+            if new_password == confirm_password:
+                current_user.set_password(new_password)
+                current_user.save()
+                messages.success(request, "You have succesfully changed your password")
+                return redirect("account:account")
+            else:
+                messages.warning(request, "The password you entered doesnot match")
+                # return redirect("account:account")
+        else:
+            messages.warning(request, "Incorrect password")
+            # return redirect("account:account")
+
+    return render(request, "account/account.html")
+
 
 def SignOutView(request):
     logout(request)

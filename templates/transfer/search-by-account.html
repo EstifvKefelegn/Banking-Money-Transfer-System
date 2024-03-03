@@ -48,7 +48,7 @@
                         <div class="form-group d-flex align-items-center">
                             <img src="{% static "assets/images/icon/search.png" %}" alt="icon">
                             <input type="text" name="account_number" placeholder="Enter Account Number">
-                            <button type="submit"><i class="fas fa-angle-right"></button>
+                            <button type="submit">Select</button>
                         </div>
                     </form>
                     <div class="user-select">
@@ -74,10 +74,10 @@
                         {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="footer-area mt-40">
+                    {% comment %} <div class="footer-area mt-40">
                         <a href="pay.html">Previous Step</a>
                         <a href="pay-step-2.html" class="active">Next</a>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

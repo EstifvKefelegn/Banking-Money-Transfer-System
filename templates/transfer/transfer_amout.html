@@ -37,10 +37,10 @@
                                         <i class="icon-g-tick"></i>
                                         Choose
                                     </a> {% endcomment %}
-                                    <a href="{% url "core:search-user"%}">
+                                    {% comment %} <a href="{% url "core:search-user"%}">
                                         <i class="icon-h-edit"></i>
                                         Edit
-                                    </a>
+                                    </a> {% endcomment %}
                                 </div>
                             </div>
                         </div>
@@ -51,11 +51,8 @@
                             <span class="mdr">You Send</span>
                             <div class="input-area">
                                 <input name="amount-send" class="xxlr" onkeyup="CalculateBalance()" placeholder="{{request.user.account.account_balance|intcomma}}" type="number" id="amount-send">
-                                <select>
-                                    <option value="1">USD</option>
-                                    <option value="2">USD</option>
-                                    <option value="3">USD</option>
-                                </select>
+                                
+                                <span>ETB</span>
                             </div>
                             <p>Available Balance<b>{{request.user.account.account_balance}}</b></p>
                             <p id="new_balance"></p>
@@ -106,8 +103,8 @@
                             </li>
                         </ul>
                         <div class="footer-area mt-40">
-                            <a href="pay-step-1.html">Previous Step</a>
-                            <button type="submit" style="padding: 10px 30px; border-radius:20px;" class="active">Next</button>
+                            {% comment %} <a href="pay-step-1.html">Previous Step</a> {% endcomment %}
+                            <button type="submit" style="padding: 10px 30px; border-radius:20px;" class="active">Proceed to the next stage</button>
                         </div>
                     </form>
                 </div>

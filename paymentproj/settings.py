@@ -91,8 +91,12 @@ WSGI_APPLICATION = 'paymentproj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'banking',
+        'USER': 'postgres',
+        'PASSWORD': 'Birth@19911215',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -147,7 +151,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGs = {
     "site_header": "EstifPay",
     "site_brand": "Easy payment",
-    "copyright": "Estifanos - All Right Reserved @ Copyright 2024" 
+    "copyright": "Estifanos - All Right Reserved @Copyright 2024" 
 }
 
 AUTH_USER_MODEL = "userauth.User"

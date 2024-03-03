@@ -15,29 +15,29 @@
                 </div>
                 <div class="choose-recipient">
                     <div class="step-area">
-                        <span class="mdr">Step 3 of 3</span>
+                       
                         <h5>Confirm Your Transfer</h5>
                     </div>
                     <div class="user-select">
                         <div class="single-user">
                             <div class="left d-flex align-items-center">
                                 <div class="img-area">
-                                    <img src="{{request.user.kyc.image.url}}" style="height:75px; width:75px; border-radius:50%; object-fit:cover;" alt="image">
+                                    <img src="{{account.user.kyc.image.url}}" style="height:75px; width:75px; border-radius:50%; object-fit:cover;" alt="image">
                                 </div>
                                 <div class="text-area">
-                                    <p>{{request.user.kyc.fullname}}</p>
+                                    <p>To: {{account.user.kyc.fullname}}</p>
                                     <span class="mdr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="541c312639353a6761143339353d387a373b39">{{account.kyc.email}}</a></span>
                                 </div>
                             </div>
                             <div class="right">
-                                <a href="javascript:void(0)">
+                                {% comment %} <a href="javascript:void(0)">
                                     <i class="icon-g-tick"></i>
                                     Choose
                                 </a>
                                 <a href="javascript:void(0)">
                                     <i class="icon-h-edit"></i>
                                     Edit
-                                </a>
+                                </a> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="top-area">
                         <h6>Payment Details</h6>
                         <div class="right">
-                            <a href="javascript:void(0)">
+                            <a href="{% url "core:transfer" account.account_number %}">
                                 <i class="icon-h-edit"></i>
                                 Edit
                             </a>
@@ -89,8 +89,8 @@
                         <label for="confirm">I confirm the payment details above</label>
                     </div>
                     <div class="footer-area mt-40">
-                        <a href="pay-step-2.html">Previous Step</a>
-                        <a href="javascript:void(0)" class="transferMod active" data-bs-toggle="modal" data-bs-target="#transferMod">Pay</a>
+                        {% comment %} <a href="pay-step-2.html">Previous Step</a> {% endcomment %}
+                        <a href="javascript:void(0)" class="transferMod active" data-bs-toggle="modal" data-bs-target="#transferMod">Transfer</a>
                     </div>
                 </form>
             </div>

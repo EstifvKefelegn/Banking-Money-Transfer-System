@@ -27,6 +27,11 @@ urlpatterns = [
     path('settlementprocessing/<accountNumber>/<transaction_id>/', payment_requst.settlement_processing, name="settlementprocessing"),
     path('settlement-completed/<accountNumber>/<transaction_id>/', payment_requst.settlement_completed, name="settlementcompletd"),
     path('delete-request/<accountNumber>/<transaction_id>/', payment_requst.request_delete, name="requestdelete"),
-    path('card/<card_id>/', credit_card.card_detail, name="creditcarddetail")
+    path('card/<card_id>/', credit_card.card_detail, name="creditcarddetail"),
+    path('fundingcard/<card_id>/', credit_card.fund_credit_card, name="fundcreditcard"),
+    path('withdrawfund/<card_id>/', credit_card.withdraw_fund, name="withdrawfund"),
+    path("delete-credit-card/<card_id>/", credit_card.delete_card, name="deletecreditcard"),
+    path('recipients/', transaction.recipient_list, name="recipients")
+
 ]
 
