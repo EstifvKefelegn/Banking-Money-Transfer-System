@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-)dck&mhlgup#2a=59-1^e(997+9b^x@ca9$5z&5bt!%z^0xd^h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["payestif.up.railway.app"]
 
 
 # Application definition
