@@ -39,6 +39,7 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                                {% if request.user.is_authenticated %}
                                 <li class="nav-item dropdown main-navbar">
                                     <a class="nav-link dropdown-toggle" href="{% url "account:account" %}">Account</a>
                                     {% comment %} <ul class="dropdown-menu main-menu shadow">
@@ -49,8 +50,7 @@
                                     </ul> {% endcomment %}
                                 </li>
                                 <li class="nav-item dropdown main-navbar">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="outside">Business</a>
+                                    <a class="nav-link dropdown-toggle" href="{% url "account:kyc-reg" %}">Profile</a>
                                     {% comment %} <ul class="dropdown-menu main-menu shadow">
                                         <li><a class="nav-link" href="payments-01.html">Business Payments</a></li>
                                         <li><a class="nav-link" href="business-account.html">Business Account</a></li>
@@ -65,8 +65,7 @@
                                     </ul> {% endcomment %}
                                 </li>
                                 <li class="nav-item dropdown main-navbar">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="outside">Company</a>
+                                    <a class="nav-link dropdown-toggle" href="{% url "core:transaction-list" %}">Transactions</a>
                                     {% comment %} <ul class="dropdown-menu main-menu shadow">
                                         <li><a class="nav-link" href="about-us.html">About Us</a></li>
                                         <li><a class="nav-link" href="career.html">Career</a></li>
@@ -83,13 +82,13 @@
                                     </ul> {% endcomment %}
                                 </li>
                                 <li class="nav-item dropdown main-navbar">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="outside">Help</a>
+                                    <a class="nav-link dropdown-toggle" href="{% url "core:search-user"  %}">Seacrh user</a>
                                     {% comment %} <ul class="dropdown-menu main-menu shadow">
                                         <li><a class="nav-link" href="help-center.html">Help Center</a></li>
                                         <li><a class="nav-link" href="help-center-category.html">Help Category</a></li>
                                     </ul> {% endcomment %}
                                 </li>
+                                {% endif %}
                             </ul>
                             <div class="right-area header-action d-flex align-items-center max-un">
                                 {% if request.user.is_authenticated %}

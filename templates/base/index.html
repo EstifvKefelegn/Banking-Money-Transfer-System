@@ -28,8 +28,8 @@
                                     <p class="xlr">Quickly and easily send, receive and request money online with PayEstif. Get a customised solution to fit your business needs.</p>
                                 </div>
                                 <div class="bottom-area d-xxl-flex">
-                                    <a href="sign-up.html" class="cmn-btn">Open a Free Account</a>
-                                    <a class="cmn-btn active mfp-iframe popupvideo" href="https://www.youtube.com/watch?v=Djz8Nc0Qxwk">See How it Works</a>
+                                    <a href="{% url "userauth:signup" %}" class="cmn-btn">Open a Free Account</a>
+                                    <a class="cmn-btn active mfp-iframe popupvideo" href="https://www.youtube.com/watch?v=7mD2hWhU4ys">See How it Works</a>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +43,8 @@
                                         </div>
                                         <div class="right-side">
                                             <select>
-                                                <option value="1">USD</option>
-                                                <option value="2">GBP</option>
+                                                <option value="1">BIRR</option>
+                                                <option value="2">USD</option>
                                                 <option value="3">AUS</option>
                                             </select>
                                         </div>
@@ -91,14 +91,14 @@
                                         </div>
                                         <div class="right-side recipient">
                                             <select>
-                                                <option value="1">AUS</option>
+                                                <option value="1">BIRR</option>
                                                 <option value="2">USD</option>
-                                                <option value="3">GBP</option>
+                                                <option value="3">AUS</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="btn-area mt-40">
-                                        <a href="javascript:void(0)" class="cmn-btn w-100">Get Started</a>
+                                        <a href="{% url "userauth:signup" %}" class="cmn-btn w-100">Get Started</a>
                                     </div>
                                 </form>
                             </div>
@@ -173,28 +173,28 @@
                                 <div class="single-item">
                                     <img src="{% static "assets/images/icon/global-payment-icon-1.png" %}" alt="icon">
                                     <h5>Peace of Mind</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio.</p>
+                                    <p>At PayEstif, Our commitment goes beyond transactions; it's about providing you with a banking experience that instills confidence and peace of mind.</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-6">
                                 <div class="single-item">
                                     <img src="{% static "assets/images/icon/global-payment-icon-2.png" %}" alt="icon">
                                     <h5>Business-Ready</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio.</p>
+                                    <p>Empower your business with PayEstif.Experience a banking solution that is not just ready for business; it's tailored to fuel your success.</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-6">
                                 <div class="single-item">
                                     <img src="{% static "assets/images/icon/global-payment-icon-3.png" %}" alt="icon">
                                     <h5>100% Transparent</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio.</p>
+                                    <p>Trust, integrity, and openness define our approach. Join us at PayEstif for a banking experience where transparency isn't just a feature; it's the foundation of your financial confidence.</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-6">
                                 <div class="single-item">
                                     <img src="{% static "assets/images/icon/global-payment-icon-4.png" %}" alt="icon">
                                     <h5>International Network</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio.</p>
+                                        <p> Embark on a journey of global financial possibilities with PayEstif. Our platform opens doors to an expansive international network, connecting you to opportunities around the world.</p>
                                 </div>
                             </div>
                         </div>
@@ -223,28 +223,28 @@
                         <div class="single-item">
                             <img src="{% static "assets/images/icon/our-solutions-icon-1.png" %}" alt="icon">
                             <h5>Payments</h5>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p>Streamline Your Transactions with PayEstif - Effortless Payments Worldwide.</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-6">
                         <div class="single-item">
                             <img src="{% static "assets/images/icon/our-solutions-icon-2.png" %}" alt="icon">
                             <h5>Collections</h5>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p>Our platform simplifies collections, providing you with easy-to-use tools for receiving payments. .</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-6">
                         <div class="single-item">
                             <img src="{% static "assets/images/icon/our-solutions-icon-3.png" %}" alt="icon">
                             <h5>Conversions</h5>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p>Dynamic currency conversions, enabling you to adapt to changing market conditions.</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-6">
                         <div class="single-item">
                             <img src="{% static "assets/images/icon/our-solutions-icon-4.png" %}" alt="icon">
                             <h5>Global Account</h5>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p>provides a global account, offering the flexibility and accessibility needed for international business. </p>
                         </div>
                     </div>
                 </div>
@@ -319,7 +319,7 @@
                         </div>
                         <ul class="features">
                             <li>
-                                <img src="{% static "assets/images/icon/check.png" %}" alt="icon"> Login with fingerprint or Face ID.
+                                <img src="{% static "assets/images/icon/check.png" %}" alt="icon"> Login with simple rgistration process.
                             </li>
                             <li>
                                 <img src="{% static "assets/images/icon/check.png" %}" alt="icon"> Simple few Taps to send money
