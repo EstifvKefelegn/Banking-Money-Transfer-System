@@ -159,3 +159,7 @@ AUTH_USER_MODEL = "userauth.User"
 LOGIN_URL = "userauth:signin"
 # LOGIN_REDIRECT_URL = "userauth:signin"
 LOGOUT_REDIRECT_URL = "userauth:signin"
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://payestif.up.railway.app',
+]
