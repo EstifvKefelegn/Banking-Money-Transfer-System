@@ -31,6 +31,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["payestif.up.railway.app"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://payestif.up.railway.app/'
+]
+ROOT_URLCONF = 'paymentproj.urls'
+
 
 # Application definition
 
@@ -66,7 +71,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'paymentproj.urls'
+
 
 TEMPLATES = [
     {
@@ -160,6 +165,3 @@ LOGIN_URL = "userauth:signin"
 # LOGIN_REDIRECT_URL = "userauth:signin"
 LOGOUT_REDIRECT_URL = "userauth:signin"
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://payestif.up.railway.app',
-]
