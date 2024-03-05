@@ -32,12 +32,12 @@ DEBUG = True
 ALLOWED_HOSTS = ["payestif.up.railway.app"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://payestif.up.railway.app/"
+    "https://payestif.up.railway.app"
     ]
 
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+CSRF_USE_SESSIONS = False
 
 
 ROOT_URLCONF = 'paymentproj.urls'
