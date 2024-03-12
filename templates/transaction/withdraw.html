@@ -16,7 +16,7 @@
                         <div class="tab-main" style="box-shadow:none;">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active text-center" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">Withdraw your money with your cards</button>
+                                    <button class="nav-link active text-center" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">Withdraw your money with your card</button>
                                 </li>
                                 {% comment %} <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Security</button>
@@ -36,10 +36,10 @@
                         
                                             {% for c in credit_card %}
                                             <a href="{% url "core:creditcarddetail"  c.card_id%}">
-                                                <div class="col-6" style=" flex: 1; width:400px; padding: 10px;">
+                                                <div class="col-sm-6" style=" flex: 1; width:400px; padding: 10px;">
                                                     <div class="card__main col-sm" >
                                                         <div class="{% if c.card_type == 'verve' %}Front_card{% endif %}    {% if c.card_type == 'master' %}masterCard{% endif %}    {% if c.card_type == 'visa' %}visaCard{% endif %}">
-                                                        <div class="top_card" style="display:flex;">
+                                                        <div class="col-sm-6 top_card" style="display:flex;">
                                                             <span class="visa">{{c.card_type|upper}}</span>
                                                             <div class="logo">
                                                                 <img src="{% static 'assets/images/logo.png' %}" class="logo" alt="logo">
