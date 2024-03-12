@@ -252,11 +252,11 @@
                                     <img src="{% static 'assets1/images/icon/deposit.png' %}" alt="Deposit"> <span>Deposit Money</span>
                                 </a>
                             </li>
-                            <li>
+                            {% comment %} <li>
                                 <a href="{% url "account:withdraw" %}">
                                     <img src="{% static 'assets1/images/icon/withdraw.png' %}" alt="Withdraw"> <span>Withdraw Money</span>
                                 </a>
-                            </li>
+                            </li> {% endcomment %}
                         </ul>
                         <ul class="bottom-item">
                             <li class="active">
