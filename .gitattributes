@@ -1,5 +1,6 @@
 # *.js linguist-vendored=python
 *.css linguist-detectable=false
+*.scss linguist-detectable=false
 *.java linguist-detectable=false
 *.python linguist-detectable=true 
 *.js linguist-detectable=false
